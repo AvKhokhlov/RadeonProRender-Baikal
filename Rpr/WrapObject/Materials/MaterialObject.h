@@ -69,7 +69,6 @@ public:
         kStandard = RPR_MATERIAL_NODE_STANDARD,
         kPassthrough = RPR_MATERIAL_NODE_PASSTHROUGH,
         kOrennayar = RPR_MATERIAL_NODE_ORENNAYAR,
-        kUberV2 = 0x100
     };
 
     //initialize methods
@@ -89,7 +88,6 @@ public:
     //inputs
     void SetInputValue(const std::string& input_name, MaterialObject* input);
     void SetInputValue(const std::string& input_name, const RadeonRays::float4& val);
-    void SetInputValue(const std::string& input_name, rpr_uint val);
 
     //Get*
     Type GetType() { return m_type; }
@@ -121,7 +119,6 @@ protected:
     virtual void SetInputTexture(const std::string& input_name, TextureMaterialObject* input);
     virtual void SetInputImage(const std::string& input_name, ImageMaterialObject* input);
     virtual void SetInputF(const std::string& input_name, const RadeonRays::float4& val);
-    virtual void SetInputU(const std::string& input_name, rpr_uint val);
 private:
 
     //handle input materials, it need for correct rprMaterialGet* methods.

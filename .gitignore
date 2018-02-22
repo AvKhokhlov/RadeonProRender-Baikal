@@ -19,5 +19,3 @@
 *.jpg
 *.cache
 *.mtl
-*/OutputImages/*
-*/ReferenceImages/*
