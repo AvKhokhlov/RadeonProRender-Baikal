@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 #include "devices.h"
 #include "data_generator_impl.h"
+#include "interpolation.h"
 #include "utils.h"
 
 #include "Rpr/WrapObject/LightObject.h"
@@ -136,14 +137,28 @@ try
     // Save settings and other info into a metadata file
     data_generator.SaveMetadata();
 
+    // generate camera samples
+    std::vector<CameraObject> cameras;
+    if (params->video_mode == 1)
+    {
+        cameras = CameraInterpolation(reinterpret_cast<CameraObject*>(params->cameras),
+                                      params->cameras_num,
+                                      params->step);
+    }
+    else
+    {
+        for (auto i = 0u; i < params->cameras_num; i++)
+        {
+            cameras.push_back(*CameraObject::Cast<CameraObject>(params->cameras[i]));
+        }
+    }
+
     for (unsigned i = 0; i < params->cameras_num; ++i)
     {
-        auto* camera = CameraObject::Cast<CameraObject>(params->cameras[i]);
-
         // Render outputs for every specified SPP at the given
         // camera position and save them to separate files
         unsigned camera_idx = params->cameras_start_output_idx + i;
-        data_generator.GenerateCameraData(camera, camera_idx);
+        data_generator.GenerateCameraData(&cameras[i], camera_idx);
 
         // Report the progress
         if (params->progress_callback)

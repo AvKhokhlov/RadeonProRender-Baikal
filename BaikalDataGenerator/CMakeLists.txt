@@ -9,6 +9,8 @@ set(DATAGENERATOR_LIB_SOURCES
     Source/data_generator_impl.h
     Source/data_generator_impl.cpp
     Source/utils.h
+    Source/interpolation.h
+    Source/interpolation.cpp
 )
 
 add_library(BaikalDataGenerator SHARED ${DATAGENERATOR_LIB_SOURCES})

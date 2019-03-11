@@ -59,8 +59,8 @@ namespace {
     const std::vector<OutputInfo> kMultipleIteratedOutputs
     {
         {Baikal::Renderer::OutputType::kColor, "color", 3},
-        {Baikal::Renderer::OutputType::kAlbedo, "albedo", 3},
-        {Baikal::Renderer::OutputType::kGloss, "gloss", 1}
+        //{Baikal::Renderer::OutputType::kAlbedo, "albedo", 3},
+        //{Baikal::Renderer::OutputType::kGloss, "gloss", 1}
     };
 
     // if you need to add new output for saving to disk
@@ -68,8 +68,8 @@ namespace {
     // just put its description in this collection
     const std::vector<OutputInfo> kSingleIteratedOutputs
     {
-        {Baikal::Renderer::OutputType::kViewShadingNormal, "view_shading_normal", 3},
-        {Baikal::Renderer::OutputType::kDepth, "view_shading_depth", 1}
+        //{Baikal::Renderer::OutputType::kViewShadingNormal, "view_shading_normal", 3},
+        //{Baikal::Renderer::OutputType::kDepth, "view_shading_depth", 1}
     };
 
 } // namespace

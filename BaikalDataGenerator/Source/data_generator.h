@@ -51,6 +51,9 @@ struct DataGeneratorParams
 
     unsigned gamma_correction; /* 0 or 1 */
 
+    unsigned video_mode; /* 0 or 1 */
+    float step; /* used only if video_mode is 1 */
+
     char const* output_dir;
 
     void(*progress_callback)(unsigned /* start_idx */,
