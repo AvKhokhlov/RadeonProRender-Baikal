@@ -79,7 +79,7 @@ std::vector<float3> lerp(float3 const& begin, float3 const& end, unsigned points
 
     for (auto i = 0u; i < points_num - 1; i++)
     {
-        samples.push_back(begin + step * i);
+        samples.push_back(begin + step * static_cast<float>(i));
     }
 
     samples.push_back(end);
@@ -93,7 +93,7 @@ float dist(float3 const& a, float3 const& b)
                      std::powf(a.z - b.z, 2));
 }
 
-std::vector<CameraObject> CameraInterpolation(CameraObject* cameras, unsigned cameras_num, float step = 0.1)
+std::vector<CameraObject> CameraInterpolation(CameraObject* cameras, unsigned cameras_num, float step)
 {
     if (cameras == nullptr)
     {
@@ -107,7 +107,9 @@ std::vector<CameraObject> CameraInterpolation(CameraObject* cameras, unsigned ca
 
     if (cameras_num == 1)
     {
-        return std::vector<CameraObject>(1, cameras[0]);
+        std::vector<CameraObject> ret;
+        ret.push_back(std::move(cameras[0]));
+        return ret;
     }
 
     std::vector<float3> position_samples;

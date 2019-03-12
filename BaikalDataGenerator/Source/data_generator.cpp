@@ -149,11 +149,11 @@ try
     {
         for (auto i = 0u; i < params->cameras_num; i++)
         {
-            cameras.push_back(*CameraObject::Cast<CameraObject>(params->cameras[i]));
+            cameras.push_back(std::move(*CameraObject::Cast<CameraObject>(params->cameras[i])));
         }
     }
 
-    for (unsigned i = 0; i < params->cameras_num; ++i)
+    for (unsigned i = 0; i < cameras.size(); ++i)
     {
         // Render outputs for every specified SPP at the given
         // camera position and save them to separate files
@@ -165,7 +165,7 @@ try
         {
             params->progress_callback(params->cameras_start_output_idx,
                                       camera_idx,
-                                      params->cameras_start_output_idx + params->cameras_num - 1);
+                                      params->cameras_start_output_idx + static_cast<unsigned>(cameras.size()) - 1);
         }
     }
 
